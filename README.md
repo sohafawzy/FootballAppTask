@@ -30,7 +30,8 @@ It is an *English Premier League* sample app which will let you follow its daily
 * Retrofit
 * Unit Testing using Junit, MockWebServer and Robolectric.
 
-##Note: Unit testing applied on data layer only.
+## Note
+Unit testing applied on data layer only.
 
 ## Installation
 First you should get your own [Api-key](https://www.football-data.org/client/register)
