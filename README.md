@@ -15,7 +15,7 @@ It is an *English Premier League* sample app which will let you follow its daily
   <img src="https://github.com/sohafawzy/FootballAppTask/blob/master/Screenshot_1636691577.png" width="250">
 </p>
 
-# Football App Modules):
+# Football App Modules:
 1. **domain**: It has the models and bussiness rules.
 2. **data**: Local & remote datasources and repositories.
 3. **app**: presentations layer
