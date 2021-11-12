@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="matchVM"
+            type="com.waslabrowser.footballapptask.ui.home.viewmodels.MatchViewModel" />
+    </data>
+    <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvHomeTeam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="16dp"
+            android:textAlignment="textEnd"
+            android:textColor="@color/orange"
+            android:text="@{matchVM.homeTeam}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvAwayTeam"
+            app:layout_constraintEnd_toStartOf="@+id/tvMatchStatus"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Liverpool" />
+
+        <TextView
+            android:id="@+id/tvAwayTeam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="16dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/orange"
+            android:text="@{matchVM.awayTeam}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tvMatchStatus"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Everton FC" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{matchVM.matchHasStarted? View.VISIBLE : View.INVISIBLE}"
+            app:constraint_referenced_ids="tvHomeScore,tvAwayScore,tvSeperation,tvMatchStatus" />
+
+        <TextView
+            android:id="@+id/tvMatchStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{matchVM.matchStatus}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/tvAwayTeam"
+            tools:text="Ended" />
+
+        <TextView
+            android:id="@+id/tvAwayScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@{matchVM.awayScore}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvMatchStatus"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tvSeperation"
+            app:layout_constraintTop_toBottomOf="@+id/tvMatchStatus"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/tvSeperation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="-"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvAwayScore"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+        <TextView
+            android:id="@+id/tvHomeScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@{matchVM.homeScore}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvAwayScore"
+            app:layout_constraintEnd_toStartOf="@+id/tvSeperation"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tvMatchStatus"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/tvMatchTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@{matchVM.matchTime}"
+            android:visibility="@{matchVM.matchHasStarted? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvAwayTeam"
+            app:layout_constraintStart_toEndOf="@+id/tvHomeTeam"
+            app:layout_constraintTop_toTopOf="parent" />
+        
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="72dp" />
+
+        <ImageView
+            android:id="@+id/ivFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            favoriteIcon="@{matchVM.isFavorite}"
+            android:src="@drawable/ic_baseline_favorite_border"
+            app:tint="@android:color/holo_red_light"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/desc_add_to_favorites"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
+</layout>
